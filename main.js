@@ -30,25 +30,30 @@ app.on('activate', () => {
   }
 );
 
+/* TODO: Fix tray not showing up when the application is compiled */
 const createTray = () => {
-  tray = new Tray('image/logo.png');
-  const contextMenu = Menu.buildFromTemplate([
-    {label: 'Open', click: () => {
-      win.show();
-    }},
-    {label: 'Quit', click: () => {
-      app.quit();
-    }},
-    {label: 'Hi', click: () => {
-      alert("Hello!");
-    }},
-  ]);
-  tray.setToolTip('Hello World App'); // Hover text for the tray icon
-  tray.setContextMenu(contextMenu);
+  try {
+    tray = new Tray('image/logo.png');
+    const contextMenu = Menu.buildFromTemplate([
+      {label: 'Open', click: () => {
+        win.show();
+      }},
+      {label: 'Quit', click: () => {
+        app.quit();
+      }},
+      {label: 'Hi', click: () => {
+        alert("Hello!");
+      }},
+    ]);
+    tray.setToolTip('Hello World App'); // Hover text for the tray icon
+    tray.setContextMenu(contextMenu);
 
-  tray.on('click', () => {
-    win.isVisible() ? win.hide() : win.show();
-  })
+    tray.on('click', () => {
+      win.isVisible() ? win.hide() : win.show();
+    });
+  } catch (error) {
+    alert('Failed to create tray ' + error);
+  }
 }
 
 app.whenReady().then(() => {
