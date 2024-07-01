@@ -21,6 +21,9 @@
     "icon": "image/logo.ico",
     "win": {
       "target": "nsis"
-    }
+    },
+    "files": [
+      "image"
+    ]
   }
 }

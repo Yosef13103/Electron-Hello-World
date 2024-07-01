@@ -38,7 +38,10 @@ const createTray = () => {
     }},
     {label: 'Quit', click: () => {
       app.quit();
-    }}
+    }},
+    {label: 'Hi', click: () => {
+      alert("Hello!");
+    }},
   ]);
   tray.setToolTip('Hello World App'); // Hover text for the tray icon
   tray.setContextMenu(contextMenu);
