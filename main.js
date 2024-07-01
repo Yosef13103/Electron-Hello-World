@@ -1,8 +1,10 @@
-const {BrowserWindow, app, Tray, Menu} = require('electron');
+const {BrowserWindow, app, Tray, Menu, dialog} = require('electron');
 let win;
 let tray = null;
 
 const createWindow = () => {
+  createTray();
+  
   win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -17,6 +19,8 @@ const createWindow = () => {
     event.preventDefault();
     win.hide();
   });
+
+
 }
 
 app.on('activate', () => {
@@ -42,7 +46,11 @@ const createTray = () => {
         app.quit();
       }},
       {label: 'Hi', click: () => {
-        alert("Hello!");
+        dialog.showMessageBox({
+          type: 'info',
+          title: 'Greetings',
+          message: 'Hello!',
+        });
       }},
     ]);
     tray.setToolTip('Hello World App'); // Hover text for the tray icon
@@ -58,7 +66,6 @@ const createTray = () => {
 
 app.whenReady().then(() => {
   createWindow();
-  createTray();
 });
 
 app.on('window-all-closed', () => {

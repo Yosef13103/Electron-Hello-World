@@ -14,12 +14,14 @@ async function loadHtmlContent(html) {
         alert('Failed to load HTML content: ' + error);
     }
 }
-
+/* Set home-page.html as the first screen to be shown*/
 document.addEventListener('DOMContentLoaded', (event) => {
     fetch('home-page.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('main-content').innerHTML = html;
+            // Simulate the "Home Page" button press
+            handleButtonPress('homePageButton', 'home-page.html');
         })
         .catch(err => {
             console.error('Failed to load home page:', err);
@@ -57,8 +59,15 @@ function handleButtonPress(buttonId, fileName) {
 }
 
 function displayHelloWorld() {
+    var btn = document.querySelector('.btn')
     const textContainer = document.querySelector('.hello-world-text');
-    textContainer.textContent = 'Hello World';
+    if (textContainer.textContent === 'Hello World') {
+        textContainer.textContent = '';
+        btn.textContent = 'Show Text';
+    } else {
+        textContainer.textContent = 'Hello World';
+        btn.textContent = 'Hide Text';
+    }
 }
 
 function toggleImage() {
