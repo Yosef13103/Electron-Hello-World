@@ -7,17 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "distbuilder": "electron-builder",
+    "dist": "npx electron-packager . HelloWorld --platform=win32 --arch=x64 --icon=image/logo.ico --out=dist --overwrite"
   },
   "author": "Yosef Ahmed",
   "license": "ISC",
   "devDependencies": {
     "electron": "^31.1.0",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
   },
-  "build":{
+  "build": {
     "appId": "com.yosef.hello-world",
-    "productName" : "Hello World",
+    "productName": "Hello World",
     "icon": "image/logo.ico",
     "win": {
       "target": "nsis"

@@ -1,9 +1,11 @@
-const {BrowserWindow, app, Tray, Menu, dialog} = require('electron');
+const {BrowserWindow, app, Tray, Menu, dialog, nativeImage } = require('electron');
+const fs = require('fs');
+const path = require('path');
+
 let win;
 let tray = null;
 
 const createWindow = () => {
-  createTray();
   
   win = new BrowserWindow({
     width: 800,
@@ -19,8 +21,6 @@ const createWindow = () => {
     event.preventDefault();
     win.hide();
   });
-
-
 }
 
 app.on('activate', () => {
@@ -34,38 +34,40 @@ app.on('activate', () => {
   }
 );
 
-/* TODO: Fix tray not showing up when the application is compiled */
 const createTray = () => {
   try {
-    tray = new Tray('image/logo.png');
+    const iconPath = path.join(__dirname, 'image/logo.png')
+    tray = new Tray(nativeImage.createFromPath(iconPath));
     const contextMenu = Menu.buildFromTemplate([
-      {label: 'Open', click: () => {
-        win.show();
-      }},
-      {label: 'Quit', click: () => {
-        app.quit();
-      }},
-      {label: 'Hi', click: () => {
-        dialog.showMessageBox({
+      { label: 'Open', click: () => win.show() },
+      { label: 'Quit', click: () => app.quit() },
+      { label: 'Hi', click: () => dialog.showMessageBox({
           type: 'info',
           title: 'Greetings',
           message: 'Hello!',
-        });
-      }},
+        })
+      },
     ]);
-    tray.setToolTip('Hello World App'); // Hover text for the tray icon
+    tray.setToolTip('Hello World App');
     tray.setContextMenu(contextMenu);
 
     tray.on('click', () => {
       win.isVisible() ? win.hide() : win.show();
     });
   } catch (error) {
-    alert('Failed to create tray ' + error);
+    const logFilePath = path.join(__dirname, 'error.log');
+    const errorMessage = `Failed to create tray: ${error}\n`;
+    fs.appendFile(logFilePath, errorMessage, (err) => {
+      if (err) {
+        console.error('Failed to write error to log file:', err);
+      }
+    });
   }
-}
+};
 
 app.whenReady().then(() => {
   createWindow();
+  createTray();
 });
 
 app.on('window-all-closed', () => {
