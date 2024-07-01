@@ -5,11 +5,22 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "Yosef Ahmed",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^31.1.0"
+    "electron": "^31.1.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build":{
+    "appId": "com.yosef.hello-world",
+    "productName" : "Hello World",
+    "icon": "image/logo.ico",
+    "win": {
+      "target": "nsis"
+    }
   }
 }
