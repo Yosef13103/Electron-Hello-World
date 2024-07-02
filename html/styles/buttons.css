@@ -1,0 +1,55 @@
+.btn {
+    padding: 10px 20px;
+    background-color: #007BFF; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and transform */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn:active {
+    background-color: #004085; /* Even darker shade when clicked */
+    transform: scale(0.98); /* Slightly scale down the button when clicked */
+}
+
+/* New styles for buttons with images */
+.btn-image {
+    padding: 0; /* Remove padding for image buttons */
+    border-radius: 50%; /* Make image buttons circular */
+    width: 50px; /* Set fixed width */
+    height: 50px; /* Set fixed height */
+    overflow: hidden; /* Prevents image overflow */
+    background-color: #559ef7; /* Light grey background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex; /* Ensures content is centered */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.btn-image img {
+    width: 50%; /* Make image fill the button */
+    height: 50%; /* Make image fill the button */
+    object-fit: cover; /* Ensure the image covers the button area */
+}
+
+.nav-bar #exitButton {
+    flex-grow: 0; /* Prevents the button from growing */
+    width: 40px; /* Sets a specific width smaller than others */
+    height: 100%; /* Sets a specific height smaller than others */
+    margin: 5px; /* Adjusts margin to ensure it doesn't take too much space */
+    padding: 0; /* Reduces padding to decrease overall size */
+    background-color: #ff0000; /* Specific background color for exit button */
+}
+
+.nav-bar #exitButton:hover {
+    background-color: #cc0000; /* Darker shade on hover */
+}
+.nav-bar #exitButton img {
+    width: 100%; /* Adjusts to button size */
+    height: auto; /* Maintains aspect ratio */
+}

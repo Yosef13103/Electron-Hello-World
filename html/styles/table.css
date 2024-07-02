@@ -1,0 +1,33 @@
+.table {
+    width: 100%; /* Make the table width fill container */
+    border-collapse: collapse; /* Collapse borders between table cells */
+    margin-top: 20px; /* Add some space above the table */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Use a clean, readable font */
+    display: table; /* Ensure the table respects the min-height */
+}
+
+.table th, .table td {
+    text-align: left; /* Align text to the left */
+    padding: 8px; /* Add padding inside cells for spacing */
+    border-bottom: 1px solid #ddd; /* Add a light border to the bottom of each cell */
+}
+
+.table th {
+    background-color: #f2f2f2; /* Light grey background for the header row */
+    color: #333; /* Darker text color for contrast */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+.table tr:hover {
+    background-color: #eaeaea; /* Highlight row on hover */
+}
+
+.table-container {
+    text-align: center; /* Center-aligns the spinner */
+    min-height: 500px; /* Set a minimum height */
+    min-width: 700px; /* Set a minimum width */
+}

@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../html/styles/styles.css">
+    <link rel="stylesheet" href="../html/styles/main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World - Yosef Ahmed</title>
 </head>
 <body>
     <div class="container">
+        <div class="main-content" id="main-content">
+            <!-- Content will be injected here -->
+        </div>
         <div class="nav-bar">
+            <button id="exitButton" onclick="quitApp()">
+                <img src="../image/x.png" alt="Exit">
+            </button>
             <button id="helloWorldButton" onclick="getPage(this.id)">
                 <img src="../image/helloworld.png" alt="Hello World Page">
             </button>
@@ -19,9 +25,7 @@
                 <img src="../image/json.png" alt="JSON Page">
             </button>
         </div>
-        <div class="main-content" id="main-content">
-            <!-- Content will be injected here -->
-        </div>
+
     </div>
     <script src="../scripts/script.js"></script>
     <script src="../scripts/json.js"></script>

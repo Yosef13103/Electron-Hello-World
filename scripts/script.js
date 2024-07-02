@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     loadHomePage();
 });
 
+function quitApp() {
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.send('quit-app'); // Signal the main process to quit the app
+}
+
 async function loadHtmlContent(html) {
     try {
         const response = await fetch(html);

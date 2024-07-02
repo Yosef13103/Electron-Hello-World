@@ -1,4 +1,4 @@
-const {BrowserWindow, app, Tray, Menu, dialog, nativeImage } = require('electron');
+const {BrowserWindow, app, Tray, Menu, dialog, nativeImage, screen, ipcMain} = require('electron');
 const fs = require('fs');
 const path = require('path');
 
@@ -6,33 +6,32 @@ let win;
 let tray = null;
 
 const createWindow = () => {
-  
+  // Fixed dimensions for a quarter of a 1080p screen
+  let windowWidth = 1920 / 2;
+  let windowHeight = 1080 / 2;
+  let taskbarHeight = 20; // Approximate taskbar height
+
+  // Adjust position for bottom taskbar
+  const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
+  let posX = screenWidth - windowWidth - 10;
+  let posY = screenHeight - windowHeight - taskbarHeight;
+
   win = new BrowserWindow({
-    width: 1000,
-    height: 800,
+    width: windowWidth,
+    height: windowHeight,
+    x: posX,
+    y: posY,
+    frame: false,
+    resizable: false,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
 
   win.loadFile('html/index.html');
+};
 
-  win.on('minimize', (event) => {
-    event.preventDefault();
-    win.hide();
-  });
-}
-
-app.on('activate', () => {
-  if (win == null)
-    {
-      createWindow();
-    }
-    else {
-      win.show();
-    }
-  }
-);
 
 const createTray = () => {
   try {
@@ -47,7 +46,7 @@ const createTray = () => {
           title: 'Greetings',
           message: 'Hello!',
         })
-      },        
+      },
     ]);
     tray.setToolTip('Hello World App');
     tray.setContextMenu(contextMenu);
@@ -66,8 +65,24 @@ const createTray = () => {
   }
 };
 
+ipcMain.on('quit-app', () => {
+  app.quit();
+});
+
+app.on('activate', () => {
+  if (win == null)
+    {
+      createWindow();
+    }
+    else {
+      win.show();
+    }
+  }
+);
+
 app.whenReady().then(() => {
-  createWindow();
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  createWindow(width, height);
   createTray();
 });
 
