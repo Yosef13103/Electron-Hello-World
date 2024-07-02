@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random User Table</title>
+</head>
+<body>
+    <div class="table-container"> <!-- Container for table and spinner -->
+        <table class="table" id="userTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+               <!-- Table rows will be injected here -->
+            </tbody>
+        </table>
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <!-- Update the button to include an image -->
+    <button class="btn-image" id="refreshButton" onclick="fillTable('userTable')" style="position: fixed; bottom: 80px; right: 20px; z-index: 100; border-radius: 50%; width: 50px; height: 50px; padding: 0; border: none; background-color: #09f;">
+        <img src="../image/refresh.png" alt="Refresh">
+    </button>
+</body>
+</html>

@@ -19,20 +19,41 @@ body, html {
     position: fixed; /* Fixed at the bottom */
     bottom: 0;
     z-index: 1000; /* Ensure it's above other content */
+    background-color: #f8f9fa; /* Updated background color for modern look */
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Add shadow for depth */
+    padding: 5px 0; /* Adjust padding for visual appeal */
 }
 
 .nav-bar button {
     flex-grow: 1; /* Buttons grow to fill available space */
     height: 50px; /* Fixed height */
     box-sizing: border-box;
-    border: 1px solid #9a9a9a;
-    background-color: #c3c1c1; /* Example background color */
+    border: none; /* Remove border for a cleaner look */
+    background-color: transparent; /* Transparent background */
+    border-radius: 5px; /* Rounded corners */
+    transition: transform 0.2s; /* Smooth scale transition */
+    cursor: pointer; /* Change cursor on hover */
+    margin: 2px; /* Adds space between buttons */
+    display: flex; /* Use Flexbox for centering the image */
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
 }
 
-.nav-bar-button-pressed {
-    background-color: #585858;
-    color: rgb(255, 255, 255);
-    border: 2px solid #000000;
+.nav-bar button img {
+    width: 24px; /* Standard size for logos */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.nav-bar button.home img {
+    width: 30px; /* Slightly larger logo for the home button */
+}
+
+.nav-bar button:hover {
+    transform: scale(1.1); /* Slightly scale up on hover */
+}
+
+.nav-bar button:active, .nav-bar button:focus {
+    transform: scale(0.95); /* Slightly scale down on click */
 }
 
 .main-content {
@@ -46,11 +67,99 @@ body, html {
     margin-left: 20px;
     margin-right: 20px;
     padding-top: 50px;
-    overflow: auto; /* Optional based on internal content */
+    overflow: auto; /* Keep scrolling functionality */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.main-content::-webkit-scrollbar {
+    display: none; /* For Webkit browsers like Chrome and Safari */
 }
 
 .btn {
     padding: 10px 20px;
+    background-color: #007BFF; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and transform */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn:active {
+    background-color: #004085; /* Even darker shade when clicked */
+    transform: scale(0.98); /* Slightly scale down the button when clicked */
+}
+
+/* New styles for buttons with images */
+.btn-image {
+    padding: 0; /* Remove padding for image buttons */
+    border-radius: 50%; /* Make image buttons circular */
+    width: 50px; /* Set fixed width */
+    height: 50px; /* Set fixed height */
+    overflow: hidden; /* Prevents image overflow */
+    background-color: #559ef7; /* Light grey background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex; /* Ensures content is centered */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.btn-image img {
+    width: 50%; /* Make image fill the button */
+    height: 50%; /* Make image fill the button */
+    object-fit: cover; /* Ensure the image covers the button area */
+}
+
+.table {
+    width: 100%; /* Make the table width fill container */
+    border-collapse: collapse; /* Collapse borders between table cells */
+    margin-top: 20px; /* Add some space above the table */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Use a clean, readable font */
+    display: table; /* Ensure the table respects the min-height */
+}
+
+.table th, .table td {
+    text-align: left; /* Align text to the left */
+    padding: 8px; /* Add padding inside cells for spacing */
+    border-bottom: 1px solid #ddd; /* Add a light border to the bottom of each cell */
+}
+
+.table th {
+    background-color: #f2f2f2; /* Light grey background for the header row */
+    color: #333; /* Darker text color for contrast */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+.table tr:hover {
+    background-color: #eaeaea; /* Highlight row on hover */
+}
+
+.table-container {
+    text-align: center; /* Center-aligns the spinner */
+    min-height: 500px; /* Set a minimum height */
+    min-width: 700px; /* Set a minimum width */
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s infinite linear;
+    margin-top: 30%;
+    margin-bottom: 30%;
+    margin-left: 45%;
+    padding: 20px;
 }
 
 .hello-world-text {
@@ -58,6 +167,15 @@ body, html {
     top: 20px;
     width: 100%;
     text-align: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* * for classes, # for ids */

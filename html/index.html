@@ -9,14 +9,21 @@
 <body>
     <div class="container">
         <div class="nav-bar">
-            <button id="homePageButton" onclick="getPage(this.id)">Home Page</button>
-            <button id="helloWorldButton" onclick="getPage(this.id)">Hello World Page</button>
-            <button id="JSONButton" onclick="getPage(this.id)">JSON Page</button>
+            <button id="helloWorldButton" onclick="getPage(this.id)">
+                <img src="../image/helloworld.png" alt="Hello World Page">
+            </button>
+            <button id="homePageButton" onclick="getPage(this.id)" class="home">
+                <img src="../image/home.png" alt="Home Page">
+            </button>
+            <button id="JSONButton" onclick="getPage(this.id)">
+                <img src="../image/json.png" alt="JSON Page">
+            </button>
         </div>
         <div class="main-content" id="main-content">
             <!-- Content will be injected here -->
         </div>
     </div>
     <script src="../scripts/script.js"></script>
+    <script src="../scripts/json.js"></script>
 </body>
 </html>
