@@ -36,17 +36,18 @@ app.on('activate', () => {
 
 const createTray = () => {
   try {
-    const iconPath = path.join(__dirname, 'image/logo.png')
+    const iconPath = path.join(__dirname, '../image/logo.png')
     tray = new Tray(nativeImage.createFromPath(iconPath));
     const contextMenu = Menu.buildFromTemplate([
       { label: 'Open', click: () => win.show() },
       { label: 'Quit', click: () => app.quit() },
+      { type:'separator' },
       { label: 'Hi', click: () => dialog.showMessageBox({
           type: 'info',
           title: 'Greetings',
           message: 'Hello!',
         })
-      },
+      },        
     ]);
     tray.setToolTip('Hello World App');
     tray.setContextMenu(contextMenu);

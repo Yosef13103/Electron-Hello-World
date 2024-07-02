@@ -10,10 +10,15 @@ async function loadHtmlContent(html) {
             throw new Error("Failed to find the main-content element.");
         }
         mainContent.innerHTML = htmlContent;
+
+        // Dynamically adjust the top padding or margin of the main-content
+        // to account for the navbar height. Adjust the '50px' as needed.
+        mainContent.style.paddingTop = '50px';
     } catch (error) {
         alert('Failed to load HTML content: ' + error);
     }
 }
+
 /* Set home-page.html as the first screen to be shown*/
 document.addEventListener('DOMContentLoaded', (event) => {
     fetch('home-page.html')
@@ -29,13 +34,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
 });
 
-function showHomePage(buttonid) {
-    filename = 'home-page.html';
-    handleButtonPress(buttonid, filename);
-}
-
-function showHelloWorld(buttonid) {
-    filename = 'hello-world.html';
+function getPage(buttonid) {
+    switch (buttonid) {
+        case "homePageButton":
+            filename = 'home-page.html';
+            break;
+        case "helloWorldButton":
+            filename = 'hello-world.html';
+            break;
+        case "JSONButton":
+            filename = 'json-page.html';
+            break;
+    }
     handleButtonPress(buttonid, filename);
 }
 
@@ -58,20 +68,19 @@ function handleButtonPress(buttonId, fileName) {
     pressedButton.classList.add('nav-bar-button-pressed');
 }
 
-function displayHelloWorld() {
-    var btn = document.querySelector('.btn')
-    const textContainer = document.querySelector('.hello-world-text');
-    if (textContainer.textContent === 'Hello World') {
+function displayText(btn, text) {
+    const textContainer = btn.previousElementSibling; // Directly get the preceding div
+    if (textContainer.textContent === text) {
         textContainer.textContent = '';
         btn.textContent = 'Show Text';
     } else {
-        textContainer.textContent = 'Hello World';
+        textContainer.textContent = text;
         btn.textContent = 'Hide Text';
     }
 }
 
-function toggleImage() {
-    var img = document.getElementById("helloworldimg");
+function toggleImage(id) {
+    var img = document.getElementById(id);
     var btn = document.querySelector('.btn');
     if (img.style.display === "none" || img.style.display === "") {
         img.style.display = "block";

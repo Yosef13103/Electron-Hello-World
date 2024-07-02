@@ -11,45 +11,48 @@ body, html {
 }
 
 .nav-bar {
-    width: 200px;
-    height: 100vh; /* Full viewport height */
-    background-color: #f0f0f0;
-    padding: 0px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    display: flex; /* Use Flexbox */
+    flex-direction: row; /* Align children horizontally */
+    justify-content: space-around; /* Distribute space around items */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Full viewport width */
+    position: fixed; /* Fixed at the bottom */
+    bottom: 0;
+    z-index: 1000; /* Ensure it's above other content */
 }
 
 .nav-bar button {
-    width: calc(100%);
-    height: 50px;
+    flex-grow: 1; /* Buttons grow to fill available space */
+    height: 50px; /* Fixed height */
     box-sizing: border-box;
     border: 1px solid #9a9a9a;
+    background-color: #c3c1c1; /* Example background color */
 }
 
 .nav-bar-button-pressed {
-    background-color: #7a7a7a;
+    background-color: #585858;
     color: rgb(255, 255, 255);
     border: 2px solid #000000;
 }
 
 .main-content {
     flex-grow: 1;
-    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: calc(100% - 240px); /* Adjust width to account for margins */
-    height: 100vh;
-    margin-left: 20px; /* 200px nav-bar width + 20px margin */
-    margin-right: 20px; /* Margin on the right */
+    width: calc(100% - 240px); /* Adjust based on sidebar or other elements */
+    height: calc(100vh - 100px); /* Adjusted to account for fixed elements */
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 50px;
+    overflow: auto; /* Optional based on internal content */
 }
 
 .btn {
     padding: 10px 20px;
 }
+
 .hello-world-text {
     position: center;
     top: 20px;
@@ -57,7 +60,7 @@ body, html {
     text-align: center;
 }
 
-/* # for classes, * for ids */
+/* * for classes, # for ids */
 
 #helloworldimg {
     display: block; /* Makes the margin auto applicable */
